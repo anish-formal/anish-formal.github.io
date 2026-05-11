@@ -504,7 +504,7 @@ P.prototype.u=function(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)t
 P.prototype.d=function(){cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);cx.fillStyle='rgba(0,212,255,'+this.a+')';cx.fill()};
 for(var i=0;i<80;i++)pts.push(new P());
 (function draw(){cx.clearRect(0,0,W,H);pts.forEach(function(p){p.u();p.d()});for(var a=0;a<pts.length;a++)for(var b=a+1;b<pts.length;b++){var dx=pts[a].x-pts[b].x,dy=pts[a].y-pts[b].y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){cx.beginPath();cx.moveTo(pts[a].x,pts[a].y);cx.lineTo(pts[b].x,pts[b].y);cx.strokeStyle='rgba(0,212,255,'+(0.08*(1-d/120))+')';cx.lineWidth=.5;cx.stroke()}}requestAnimationFrame(draw)})();
-var roles=['Data Engineer · Databricks + GCP','Big Data Architect · PySpark + Spark','Java Developer · REST + ETL','SRE Engineer · 99.9% Uptime','DevOps · CI/CD + Jenkins'],ri=0,ci=0,del=false,rt='',roleEl=document.getElementById('role-text');
+var roles=['Data Engineer · Databricks + GCP ','Big Data Architect · PySpark + Spark ','Java Developer · REST + ETL ','SRE Engineer · 99.9% Uptime ','DevOps · CI/CD + Jenkins '],ri=0,ci=0,del=false,rt='',roleEl=document.getElementById('role-text');
 function type(){var t=roles[ri];if(!del){rt=t.slice(0,++ci);if(ci===t.length){del=true;setTimeout(type,1800);return}}else{rt=t.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length;setTimeout(type,300);return}}roleEl.textContent=rt;setTimeout(type,del?40:60)}
 type();
 var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.15});
